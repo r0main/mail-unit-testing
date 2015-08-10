@@ -1,0 +1,1 @@
+This project shows how to unit test some Java code sending e-mail. Just take a look at the simple test class `src/test/../BirthdayCelebrationTest.java`
