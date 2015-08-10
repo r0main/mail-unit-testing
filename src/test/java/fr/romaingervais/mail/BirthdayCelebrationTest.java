@@ -35,7 +35,7 @@ public class BirthdayCelebrationTest {
     public void testIfNoBodyIsBornTodayNoMailsShouldBeSent(){
         Stream<String> nobody = Stream.empty();
         LocalDate dateOfBirth = LocalDate.of(1987, Month.JULY, 18);
-        LocalDate currentDate = LocalDate.of(2015, Month.FEBRUARY, 9);
+        LocalDate currentDate = LocalDate.of(2015, Month.JULY, 18);
 
         birthdayCelebration.wishBirthdays(nobody, dateOfBirth, currentDate);
 
@@ -46,15 +46,15 @@ public class BirthdayCelebrationTest {
     public void testMailAreSentToTheSpecifiedPersons(){
         Stream<String> birthdayOf = Stream.of("kevindu77@pimpmymail.com", "amandinedu42@pimpmymail.com");
         LocalDate dateOfBirth = LocalDate.of(1987, Month.JULY, 18);
-        LocalDate currentDate = LocalDate.of(2015, Month.FEBRUARY, 9);
+        LocalDate currentDate = LocalDate.of(2015, Month.JULY, 18);
 
         birthdayCelebration.wishBirthdays(birthdayOf, dateOfBirth, currentDate);
 
         assertThat(inMemorySmtpServer.getMessages())
             .extracting("envelopeSender", "envelopeReceiver", "mimeMessage.content")
             .containsOnly(
-                    tuple("no-reply@romain-gervais.fr", "kevindu77@pimpmymail.com", "Bonjour, pour tes 27 ans l'équipe te souhaite un très bon anniversaire !" + System.lineSeparator()),
-                    tuple("no-reply@romain-gervais.fr", "amandinedu42@pimpmymail.com", "Bonjour, pour tes 27 ans l'équipe te souhaite un très bon anniversaire !" + System.lineSeparator())
+                    tuple("no-reply@romain-gervais.fr", "kevindu77@pimpmymail.com", "Bonjour, pour tes 28 ans l'équipe te souhaite un très bon anniversaire !" + System.lineSeparator()),
+                    tuple("no-reply@romain-gervais.fr", "amandinedu42@pimpmymail.com", "Bonjour, pour tes 28 ans l'équipe te souhaite un très bon anniversaire !" + System.lineSeparator())
             );
     }
 }
